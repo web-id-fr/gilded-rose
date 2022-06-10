@@ -26,9 +26,7 @@ class GildedRose
     public function tick()
     {
         if (!in_array($this->name, ['Aged Brie', 'Backstage passes to a TAFKAL80ETC concert'])) {
-            if ($this->quality > 0 && $this->name !== 'Sulfuras, Hand of Ragnaros') {
-                $this->quality--;
-            }
+            $this->decreaseQuality();
         } elseif ($this->quality < 50) {
             $this->quality++;
 
@@ -48,14 +46,23 @@ class GildedRose
         if ($this->sellIn < 0) {
             if ($this->name !== 'Aged Brie') {
                 if ($this->name !== 'Backstage passes to a TAFKAL80ETC concert') {
-                    if ($this->quality > 0 && $this->name !== 'Sulfuras, Hand of Ragnaros') {
-                        $this->quality--;
-                    }
+                    $this->decreaseQuality();
                 } else {
-                    $this->quality = $this->quality - $this->quality;
+                    $this->quality = 0;
                 }
             } elseif ($this->quality < 50) {
                 $this->quality++;
+            }
+        }
+    }
+
+    private function decreaseQuality(): void
+    {
+        if ($this->quality > 0 && $this->name !== 'Sulfuras, Hand of Ragnaros') {
+            if ($this->name === 'Conjured Mana Cake') {
+                $this->quality -= 2;
+            } else {
+                $this->quality--;
             }
         }
     }
