@@ -19,7 +19,8 @@ class GildedRose
         $this->sellIn = $sellIn;
     }
 
-    public static function of(string $name, int $quality, int $sellIn) {
+    public static function of(string $name, int $quality, int $sellIn)
+    {
         return new static($name, $quality, $sellIn);
     }
 
