@@ -1,4 +1,5 @@
 tests:
+	./vendor/squizlabs/php_codesniffer/bin/phpcs --standard=PSR12 src/
 	./vendor/kahlan/kahlan/bin/kahlan
 
 dockerizedTests:
